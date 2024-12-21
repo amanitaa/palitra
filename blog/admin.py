@@ -4,7 +4,6 @@ from django.db import models
 from tinymce.widgets import TinyMCE
 
 from blog.models import Blog
-from tags.models import Tag
 
 
 class BlogAdmin(admin.ModelAdmin):
