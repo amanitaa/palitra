@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from tags.models import Tag
+
+
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title',)
+
+
+admin.site.register(Tag)
