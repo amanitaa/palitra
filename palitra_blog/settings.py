@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "tinymce",
     "filebrowser",
     "mptt",
+    "adminsortable2"
 ]
 
 MIDDLEWARE = [
