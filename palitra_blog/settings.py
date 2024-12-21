@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -27,6 +26,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Tinymce
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 500,
+    'width': 800,
+    'plugins': 'image link media',
+    'toolbar': 'undo redo | styleselect | bold italic | link image | media | alignleft aligncenter alignright '
+               'alignjustify | outdent indent',
+    'file_browser_callback_types': 'file image media',
+    'file_browser_callback': 'djangoFileBrowser'
+}
 
 # Application definition
 
@@ -41,7 +54,10 @@ INSTALLED_APPS = [
     "categories.apps.CategoriesConfig",
     "tags.apps.TagsConfig",
     "menu.apps.MenuConfig",
-    "comments.apps.CommentsConfig"
+    "comments.apps.CommentsConfig",
+    "tinymce",
+    "filebrowser",
+    "user.apps.UserConfig"
 ]
 
 MIDDLEWARE = [
@@ -75,14 +91,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'palitra_blog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'palitra',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -105,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -116,7 +134,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
