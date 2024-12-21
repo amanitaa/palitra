@@ -4,7 +4,6 @@ from django.db import models
 from tinymce.widgets import TinyMCE
 
 from blog.models import Blog
-from categories.models import Category
 from tags.models import Tag
 
 
@@ -17,5 +16,4 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Blog, BlogAdmin)
-admin.site.register(Category)
 admin.site.register(Tag)

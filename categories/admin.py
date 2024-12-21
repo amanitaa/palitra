@@ -1,3 +1,12 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
 
-# Register your models here.
+from categories.models import Category
+
+
+class CategoryAdmin(MPTTModelAdmin):
+    list_display = ('title', 'parent')
+    mptt_level_indent = 20
+
+
+admin.site.register(Category, CategoryAdmin)
