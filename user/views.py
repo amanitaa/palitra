@@ -10,7 +10,6 @@ from .serializers import RegistrationSerializer, ProfileSerializer
 
 
 class RegistrationView(APIView):
-    @classmethod
     def post(cls, request):
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
@@ -28,7 +27,6 @@ class RegistrationView(APIView):
 
 
 class ActivateAccountView(APIView):
-    @classmethod
     def get(cls, request, user_id, token):
         try:
             user = User.objects.get(pk=user_id)
@@ -42,7 +40,6 @@ class ActivateAccountView(APIView):
 
 
 class PasswordResetView(APIView):
-    @classmethod
     def post(cls, request):
         email = request.data.get('email')
         try:
@@ -61,7 +58,6 @@ class PasswordResetView(APIView):
 
 
 class PasswordResetConfirmView(APIView):
-    @classmethod
     def post(cls, request, user_id, token):
         try:
             user = User.objects.get(pk=user_id)
@@ -78,7 +74,6 @@ class PasswordResetConfirmView(APIView):
 class PasswordUpdateView(APIView):
     permission_classes = [IsAuthenticated]
 
-    @classmethod
     def post(cls, request):
         user = request.user
         current_password = request.data.get('current_password')
@@ -93,12 +88,10 @@ class PasswordUpdateView(APIView):
 class ProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
-    @classmethod
     def get(cls, request):
         serializer = ProfileSerializer(request.user)
         return Response(serializer.data)
 
-    @classmethod
     def put(cls, request):
         serializer = ProfileSerializer(request.user, data=request.data, partial=True)
         if serializer.is_valid():
