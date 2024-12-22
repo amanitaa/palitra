@@ -26,6 +26,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/filebrowser/', site.urls),
     path('tinymce/', include('tinymce.urls')),
+    path('api/comments/', include('comments.urls', namespace='comments')),
+    path('api/users/', include('user.urls', namespace='users')),
+    path('api/tags/', include('tags.urls', namespace='tags')),
+    path('api/menu/', include('menu.urls', namespace='menu')),
+    path('api/categories/', include('categories.urls', namespace='categories')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
